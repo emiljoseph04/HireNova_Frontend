@@ -39,7 +39,7 @@ function LandingPage() {
 
             <div className="lg:w-1/2 flex justify-center">
               <div className="bg-white/10 backdrop-blur-xl p-6 rounded-3xl max-w-sm w-full">
-                <h3 className="text-xl font-bold mb-4">TPO Dashboard</h3>
+                {/* <h3 className="text-xl font-bold mb-4">TPO Dashboard</h3> */}
 
                 <div className="grid grid-cols-3 gap-4 text-center">
                   <div className="bg-white/20 p-4 rounded-xl">

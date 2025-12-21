@@ -29,7 +29,7 @@ function TpoHeader() {
           <li><Link to="/tpo/dashboard" className="hover:text-purple-700" style={{ color: "#501558" }}>Dashboard</Link></li>
           <li><Link to="/tpo/add-company" className="hover:text-purple-700" style={{ color: "#501558" }}>Add Company</Link></li>
           <li><Link to="/tpo/manage-drives" className="hover:text-purple-700" style={{ color: "#501558" }}>Manage Drives</Link></li>
-          <li><Link to="/tpo/analytics" className="hover:text-purple-700" style={{ color: "#501558" }}>Analytics</Link></li>
+          {/* <li><Link to="/tpo/analytics" className="hover:text-purple-700" style={{ color: "#501558" }}>Analytics</Link></li> */}
 
           <button onClick={handleLogout}>
             <Link
@@ -54,7 +54,7 @@ function TpoHeader() {
             <li><Link onClick={() => setOpen(false)} to="/tpo/dashboard" style={{ color: "#501558" }}>Dashboard</Link></li>
             <li><Link onClick={() => setOpen(false)} to="/tpo/add-company" style={{ color: "#501558" }}>Add Company</Link></li>
             <li><Link onClick={() => setOpen(false)} to="/tpo/manage-drives" style={{ color: "#501558" }}>Manage Drives</Link></li>
-            <li><Link onClick={() => setOpen(false)} to="/tpo/analytics" style={{ color: "#501558" }}>Analytics</Link></li>
+            {/* <li><Link onClick={() => setOpen(false)} to="/tpo/analytics" style={{ color: "#501558" }}>Analytics</Link></li> */}
             <button onClick={handleLogout}><Link onClick={() => setOpen(false)} to="/tpo/login" style={{ color: "#501558" }}>Logout</Link></button>
 
           </ul>

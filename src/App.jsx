@@ -26,6 +26,7 @@ import { ToastContainer } from 'react-toastify'
 import "react-toastify/dist/ReactToastify.css";
 import ApplyJob from './student/pages/ApplyJob'
 import StudentDrives from './student/pages/StudentDrives'
+import ResumeHistory from './student/components/ResumeHistory'
 
 function App() {
   const [loader, setLoader] = useState(true)
@@ -49,10 +50,12 @@ function App() {
         <Route path='/student/jobs' element={<Jobs />} />
         <Route path='/student/applications' element={<Applications />} />
         <Route path='/student/resume' element={<ResumeBuilder />} />
+        <Route path="/student/resume/history" element={<ResumeHistory />} />
+        <Route path="/student/resume/edit/:id" element={<ResumeBuilder />} />
         <Route path='/student/profile' element={<Profile />} />
         <Route path="/student/apply/:jobId" element={<ApplyJob />} />
         <Route path="/student/apply/:jobId" element={<ApplyJob />} />
-        <Route path="/student/drives"element={<StudentDrives />}/>
+        <Route path="/student/drives" element={<StudentDrives />} />
 
         {/* Admin/TPO */}
         <Route path='/tpo/login' element={<TpoLogin />} />
@@ -70,14 +73,14 @@ function App() {
         <Route path='/company/profile' element={<CompanyProfile />} />
 
         {/* common */}
-        
+
       </Routes>
 
       <ToastContainer
         position="top-center"
         autoClose={2000}
         theme="colored"
-       
+
         style={{ zIndex: 9999 }}
       />
     </>

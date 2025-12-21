@@ -152,12 +152,14 @@ function ManageDrives() {
 
             <input
               type="date"
+              min={new Date().toISOString().split("T")[0]}  
               value={formData.driveDate}
               onChange={(e) =>
                 setFormData({ ...formData, driveDate: e.target.value })
               }
               className="p-3 border rounded-lg"
             />
+
 
             <input
               placeholder="Eligible Branches"

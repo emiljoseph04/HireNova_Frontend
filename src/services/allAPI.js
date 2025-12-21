@@ -81,7 +81,28 @@ export const deleteDriveAPI = (id, reqHeader) => {
 export const getTpoCountsAPI = (reqHeader) => {
   return commonAPI("GET", `${SERVERURL}/tpo/counts`, {}, reqHeader);
 };
+// SAVE RESUME
+export const saveResumeAPI = async (reqBody, reqHeader) => {
+  return await commonAPI("POST",`${SERVERURL}/resumes`,reqBody,reqHeader);};
 
+// GET RESUME HISTORY (all resumes of logged-in user)
+export const getResumeHistoryAPI = async (reqHeader) => {
+  return await commonAPI("GET",`${SERVERURL}/resumes`,{},reqHeader);
+};
+
+// GET SINGLE RESUME (for edit)
+export const getSingleResumeAPI = async (resumeId, reqHeader) => {
+  return await commonAPI("GET",`${SERVERURL}/resumes/${resumeId}`,{},reqHeader);
+};
+
+// UPDATE RESUME
+export const updateResumeAPI = async (resumeId, reqBody, reqHeader) => {
+  return await commonAPI("PUT",`${SERVERURL}/resumes/${resumeId}`,reqBody,reqHeader);
+};
+// DELETE RESUME
+export const deleteResumeAPI = async (resumeId, reqHeader) => {
+  return await commonAPI("DELETE",`${SERVERURL}/resumes/${resumeId}`,{},reqHeader);
+};
 
 
 

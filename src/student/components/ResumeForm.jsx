@@ -2,177 +2,121 @@ import React from "react";
 
 function ResumeForm({ resume, setResume }) {
 
-    const update = (section, field, value) => {
-        setResume({
-            ...resume,
-            [section]: {
-                ...resume[section],
-                [field]: value
-            }
-        });
-    };
+  const update = (section, field, value) => {
+    setResume({
+      ...resume,
+      [section]: {
+        ...resume[section],
+        [field]: value
+      }
+    });
+  };
 
-    const addProject = () => {
-        setResume({
-            ...resume,
-            projects: [...resume.projects, { title: "", description: "" }]
-        });
-    };
+  return (
+    <div className="text-white space-y-10">
 
-    const updateProject = (index, field, value) => {
-        const updated = [...resume.projects];
-        updated[index][field] = value;
-        setResume({ ...resume, projects: updated });
-    };
+      {/* PERSONAL INFO */}
+      <section>
+        <h2 className="section-title">Personal Information</h2>
 
-    const removeProject = index => {
-        setResume({
-            ...resume,
-            projects: resume.projects.filter((_, i) => i !== index)
-        });
-    };
+        <input
+          className="input"
+          placeholder="name"
+          value={resume.personal.name || ""}
+          onChange={e => update("personal", "name", e.target.value)}
+        />
 
-    const addCustom = () => {
-        setResume({
-            ...resume,
-            customSections: [...resume.customSections, { title: "", content: "" }]
-        });
-    };
+        <input
+          className="input"
+          placeholder="email"
+          value={resume.personal.email || ""}
+          onChange={e => update("personal", "email", e.target.value)}
+        />
 
-    const updateCustom = (index, field, value) => {
-        const updated = [...resume.customSections];
-        updated[index][field] = value;
-        setResume({ ...resume, customSections: updated });
-    };
-    const removeCustom = index => {
-        setResume({
-            ...resume,
-            customSections: resume.customSections.filter((_, i) => i !== index)
-        });
-    };
+        <input
+          className="input"
+          placeholder="phone"
+          value={resume.personal.phone || ""}
+          onChange={e => update("personal", "phone", e.target.value)}
+        />
 
+        <input
+          className="input"
+          placeholder="linkedin"
+          value={resume.personal.linkedin || ""}
+          onChange={e => update("personal", "linkedin", e.target.value)}
+        />
 
-    return (
-        <div className="text-white space-y-10">
+        <input
+          className="input"
+          placeholder="github"
+          value={resume.personal.github || ""}
+          onChange={e => update("personal", "github", e.target.value)}
+        />
+      </section>
 
-            {/* PERSONAL INFO */}
-            <section>
-                <h2 className="section-title">Personal Information</h2>
-                {["name", "email", "phone", "linkedin", "github"].map(field => (
-                    <input
-                        key={field}
-                        className="input"
-                        placeholder={field}
-                        onChange={e => update("personal", field, e.target.value)}
-                    />
-                ))}
-            </section>
+      {/* SUMMARY */}
+      <section>
+        <h2 className="section-title">Professional Summary</h2>
+        <textarea
+          className="input h-28"
+          placeholder="Write a short summary..."
+          value={resume.summary || ""}
+          onChange={e => setResume({ ...resume, summary: e.target.value })}
+        />
+      </section>
 
-            {/* SUMMARY */}
-            <section>
-                <h2 className="section-title">Professional Summary</h2>
-                <textarea
-                    className="input h-28"
-                    placeholder="Write a short summary..."
-                    onChange={e => setResume({ ...resume, summary: e.target.value })}
-                />
-            </section>
+      {/* EDUCATION */}
+      <section>
+        <h2 className="section-title">Education</h2>
 
-            {/* EDUCATION */}
-            <section>
-                <h2 className="section-title">Education</h2>
-                {["degree", "college", "year", "cgpa"].map(field => (
-                    <input
-                        key={field}
-                        className="input"
-                        placeholder={field}
-                        onChange={e => update("education", field, e.target.value)}
-                    />
-                ))}
-            </section>
+        <input
+          className="input"
+          placeholder="degree"
+          value={resume.education.degree || ""}
+          onChange={e => update("education", "degree", e.target.value)}
+        />
 
-            {/* SKILLS */}
-            <section>
-                <h2 className="section-title">Skills</h2>
-                <input
-                    className="input"
-                    placeholder="HTML, CSS, JavaScript"
-                    onChange={e =>
-                        setResume({
-                            ...resume,
-                            skills: e.target.value.split(",").map(s => s.trim())
-                        })
-                    }
-                />
-            </section>
+        <input
+          className="input"
+          placeholder="college"
+          value={resume.education.college || ""}
+          onChange={e => update("education", "college", e.target.value)}
+        />
 
-            {/* PROJECTS */}
-            <section>
-                <h2 className="section-title">Projects</h2>
+        <input
+          className="input"
+          placeholder="year"
+          value={resume.education.year || ""}
+          onChange={e => update("education", "year", e.target.value)}
+        />
 
-                {resume.projects.map((project, index) => (
-                    <div key={index} className="mb-4">
-                        <input
-                            className="input"
-                            placeholder="Project Title"
-                            onChange={e => updateProject(index, "title", e.target.value)}
-                        />
-                        <textarea
-                            className="input h-20"
-                            placeholder="Project Description"
-                            onChange={e => updateProject(index, "description", e.target.value)}
-                        />
-                        <button
-                            onClick={() => removeProject(index)}
-                            className="text-sm underline mt-1"
-                        >
-                            Remove
-                        </button>
-                    </div>
-                ))}
+        <input
+          className="input"
+          placeholder="cgpa"
+          value={resume.education.cgpa || ""}
+          onChange={e => update("education", "cgpa", e.target.value)}
+        />
+      </section>
 
-                <button onClick={addProject} className="btn-outline">
-                    Add Project
-                </button>
-            </section>
+      {/* SKILLS */}
+      <section>
+        <h2 className="section-title">Skills</h2>
+        <input
+          className="input"
+          placeholder="HTML, CSS, JavaScript"
+          value={resume.skills.join(", ")}
+          onChange={e =>
+            setResume({
+              ...resume,
+              skills: e.target.value.split(",").map(s => s.trim())
+            })
+          }
+        />
+      </section>
 
-            {/* CUSTOM SECTIONS */}
-            <section>
-                <h2 className="section-title">Custom Sections</h2>
-
-                {resume.customSections.map((c, index) => (
-                    <div key={index} className="mb-4">
-                        <input
-                            className="input"
-                            placeholder="Section Title"
-                            value={c.title}
-                            onChange={e => updateCustom(index, "title", e.target.value)}
-                        />
-
-                        <textarea
-                            className="input h-20"
-                            placeholder="Content"
-                            value={c.content}
-                            onChange={e => updateCustom(index, "content", e.target.value)}
-                        />
-
-                        <button
-                            onClick={() => removeCustom(index)}
-                            className="text-sm underline mt-1 text-white"
-                        >
-                            Remove
-                        </button>
-                    </div>
-                ))}
-
-                <button onClick={addCustom} className="btn-outline">
-                    Add Section
-                </button>
-            </section>
-
-
-        </div>
-    );
+    </div>
+  );
 }
 
 export default ResumeForm;
