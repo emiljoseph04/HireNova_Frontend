@@ -2,6 +2,7 @@ import React from "react";
 
 function ResumeForm({ resume, setResume }) {
 
+  // update nested sections
   const update = (section, field, value) => {
     setResume({
       ...resume,
@@ -21,36 +22,36 @@ function ResumeForm({ resume, setResume }) {
 
         <input
           className="input"
-          placeholder="name"
-          value={resume.personal.name || ""}
+          placeholder="Full Name"
+          value={resume.personal.name}
           onChange={e => update("personal", "name", e.target.value)}
         />
 
         <input
           className="input"
-          placeholder="email"
-          value={resume.personal.email || ""}
+          placeholder="Email"
+          value={resume.personal.email}
           onChange={e => update("personal", "email", e.target.value)}
         />
 
         <input
           className="input"
-          placeholder="phone"
-          value={resume.personal.phone || ""}
+          placeholder="Phone"
+          value={resume.personal.phone}
           onChange={e => update("personal", "phone", e.target.value)}
         />
 
         <input
           className="input"
-          placeholder="linkedin"
-          value={resume.personal.linkedin || ""}
+          placeholder="LinkedIn URL"
+          value={resume.personal.linkedin}
           onChange={e => update("personal", "linkedin", e.target.value)}
         />
 
         <input
           className="input"
-          placeholder="github"
-          value={resume.personal.github || ""}
+          placeholder="GitHub URL"
+          value={resume.personal.github}
           onChange={e => update("personal", "github", e.target.value)}
         />
       </section>
@@ -60,8 +61,8 @@ function ResumeForm({ resume, setResume }) {
         <h2 className="section-title">Professional Summary</h2>
         <textarea
           className="input h-28"
-          placeholder="Write a short summary..."
-          value={resume.summary || ""}
+          placeholder="Write a short professional summary..."
+          value={resume.summary}
           onChange={e => setResume({ ...resume, summary: e.target.value })}
         />
       </section>
@@ -72,29 +73,29 @@ function ResumeForm({ resume, setResume }) {
 
         <input
           className="input"
-          placeholder="degree"
-          value={resume.education.degree || ""}
+          placeholder="Degree"
+          value={resume.education.degree}
           onChange={e => update("education", "degree", e.target.value)}
         />
 
         <input
           className="input"
-          placeholder="college"
-          value={resume.education.college || ""}
+          placeholder="College / University"
+          value={resume.education.college}
           onChange={e => update("education", "college", e.target.value)}
         />
 
         <input
           className="input"
-          placeholder="year"
-          value={resume.education.year || ""}
+          placeholder="Year"
+          value={resume.education.year}
           onChange={e => update("education", "year", e.target.value)}
         />
 
         <input
           className="input"
-          placeholder="cgpa"
-          value={resume.education.cgpa || ""}
+          placeholder="CGPA"
+          value={resume.education.cgpa}
           onChange={e => update("education", "cgpa", e.target.value)}
         />
       </section>
@@ -113,6 +114,117 @@ function ResumeForm({ resume, setResume }) {
             })
           }
         />
+      </section>
+
+      {/* PROJECTS */}
+      <section>
+        <h2 className="section-title">Projects</h2>
+
+        {resume.projects.map((project, index) => (
+          <div key={index} className="space-y-2 mb-4">
+            <input
+              className="input"
+              placeholder="Project Title"
+              value={project.title}
+              onChange={e => {
+                const updated = [...resume.projects];
+                updated[index].title = e.target.value;
+                setResume({ ...resume, projects: updated });
+              }}
+            />
+
+            <textarea
+              className="input h-24"
+              placeholder="Project Description"
+              value={project.description}
+              onChange={e => {
+                const updated = [...resume.projects];
+                updated[index].description = e.target.value;
+                setResume({ ...resume, projects: updated });
+              }}
+            />
+
+            {resume.projects.length > 1 && (
+              <button
+                className="btn-outline"
+                onClick={() => {
+                  const updated = resume.projects.filter((_, i) => i !== index);
+                  setResume({ ...resume, projects: updated });
+                }}
+              >
+                Remove Project
+              </button>
+            )}
+          </div>
+        ))}
+
+        <button
+          className="btn"
+          onClick={() =>
+            setResume({
+              ...resume,
+              projects: [...resume.projects, { title: "", description: "" }]
+            })
+          }
+        >
+          + Add Project
+        </button>
+      </section>
+
+      {/* CUSTOM SECTIONS */}
+      <section>
+        <h2 className="section-title">Custom Sections</h2>
+
+        {resume.customSections.map((sec, index) => (
+          <div key={index} className="space-y-2 mb-4">
+            <input
+              className="input"
+              placeholder="Section Title (eg: Certifications)"
+              value={sec.title}
+              onChange={e => {
+                const updated = [...resume.customSections];
+                updated[index].title = e.target.value;
+                setResume({ ...resume, customSections: updated });
+              }}
+            />
+
+            <textarea
+              className="input h-24"
+              placeholder="Section Content"
+              value={sec.content}
+              onChange={e => {
+                const updated = [...resume.customSections];
+                updated[index].content = e.target.value;
+                setResume({ ...resume, customSections: updated });
+              }}
+            />
+
+            <button
+              className="btn-outline"
+              onClick={() => {
+                const updated = resume.customSections.filter((_, i) => i !== index);
+                setResume({ ...resume, customSections: updated });
+              }}
+            >
+              Remove Section
+            </button>
+          </div>
+        ))}
+
+        <button
+          className="btn"
+          onClick={() =>
+            setResume({
+              ...resume,
+              customSections: [
+                ...resume.customSections,
+                { title: "", content: "" }
+              ]
+            })
+          }
+        >
+          + Add Custom Section
+        </button>
       </section>
 
     </div>
